@@ -1,67 +1,100 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>スタンプラリー</title>
+  <title>スタンプラリー（地図風）</title>
 
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      background: #f5f7fa;
       margin: 0;
-      padding: 20px;
+      padding: 0;
+      background: #eaf6ff;
     }
 
     h1 {
+      margin: 15px;
       color: #333;
     }
 
-    .card {
-      background: white;
-      padding: 20px;
-      margin: 15px auto;
-      border-radius: 15px;
+    /* 地図エリア */
+    .map {
+      position: relative;
       width: 90%;
-      max-width: 400px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 500px;
+      height: 500px;
+      margin: 20px auto;
+      background: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=800&q=60');
+      background-size: cover;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
-    .stamp {
-      font-size: 20px;
-      margin: 10px 0;
-      padding: 10px;
-      border-radius: 10px;
-      background: #eee;
+    /* スポット */
+    .spot {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      border: 2px solid #333;
+      transition: 0.2s;
+    }
+
+    .spot:active {
+      transform: scale(0.9);
     }
 
     .clear {
       background: #4CAF50;
       color: white;
+      border: none;
     }
 
+    /* コンプリート */
     .complete {
-      margin-top: 20px;
       font-size: 22px;
+      margin-top: 10px;
       color: #ff9800;
       font-weight: bold;
     }
   </style>
-
 </head>
 
 <body onload="checkStatus()">
 
-<h1>🌍 地域スタンプラリー</h1>
+<h1>🗺️ スタンプラリー</h1>
 
-<div class="card">
-  <div id="s1" class="stamp">スポット①</div>
-  <div id="s2" class="stamp">スポット②</div>
-  <div id="s3" class="stamp">スポット③</div>
+<div class="map">
+  <div id="s1" class="spot" style="top:20%; left:30%;" onclick="stamp1()">①</div>
+  <div id="s2" class="spot" style="top:50%; left:60%;" onclick="stamp2()">②</div>
+  <div id="s3" class="spot" style="top:70%; left:25%;" onclick="stamp3()">③</div>
 </div>
 
 <div id="complete" class="complete"></div>
 
 <script>
+function stamp1() {
+  localStorage.setItem("spot1", "clear");
+  checkStatus();
+}
+
+function stamp2() {
+  localStorage.setItem("spot2", "clear");
+  checkStatus();
+}
+
+function stamp3() {
+  localStorage.setItem("spot3", "clear");
+  checkStatus();
+}
+
 function checkStatus() {
   let count = 0;
 
@@ -88,3 +121,4 @@ function checkStatus() {
 
 </body>
 </html>
+
