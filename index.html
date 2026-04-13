@@ -17,7 +17,6 @@
       color: #333;
     }
 
-    /* 地図エリア */
     .map {
       position: relative;
       width: 90%;
@@ -30,7 +29,6 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
-    /* スポット */
     .spot {
       position: absolute;
       width: 60px;
@@ -57,12 +55,17 @@
       border: none;
     }
 
-    /* コンプリート */
     .complete {
       font-size: 22px;
       margin-top: 10px;
       color: #ff9800;
       font-weight: bold;
+    }
+
+    /* スタンプ帳 */
+    #stamp-area img {
+      width: 80px;
+      margin: 10px;
     }
   </style>
 </head>
@@ -78,6 +81,9 @@
 </div>
 
 <div id="complete" class="complete"></div>
+
+<h2>スタンプ帳</h2>
+<div id="stamp-area"></div>
 
 <script>
 function stamp1() {
@@ -98,27 +104,37 @@ function stamp3() {
 function checkStatus() {
   let count = 0;
 
+  // リセット
+  document.getElementById("stamp-area").innerHTML = "";
+
   if(localStorage.getItem("spot1") === "clear"){
     document.getElementById("s1").classList.add("clear");
+    document.getElementById("stamp-area").innerHTML +=
+      '<img src="stamp.png">';
     count++;
   }
 
   if(localStorage.getItem("spot2") === "clear"){
     document.getElementById("s2").classList.add("clear");
+    document.getElementById("stamp-area").innerHTML +=
+      '<img src="stamp2.png">';
     count++;
   }
 
   if(localStorage.getItem("spot3") === "clear"){
     document.getElementById("s3").classList.add("clear");
+    document.getElementById("stamp-area").innerHTML +=
+      '<img src="stamp3.png">';
     count++;
   }
 
   if(count === 3){
-    document.getElementById("complete").innerText = "🎉コンプリート！";
+    document.getElementById("complete").innerHTML =
+      "🎉コンプリート！<br><img src='https://illustimage.com/photo/814.png?20160715' width='120'>";
   }
 }
 </script>
 
 </body>
 </html>
-<img src="S_100827174.jpg">
+
